@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>나는 아픈건 딱 질색이니까</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/customer_login.css}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id = "login_page">
+            <div id="login_top">
+                <span  id ="name"><a href="/mainpage">나는 아픈건 딱 질색이니까</a></span>
+            </div>
+            <div id="login_box">
+                <form method="post">
+                    <span id="login_logo">일반 이용자 로그인<br><br></span>
+                    <span class="ID">아이디<br></span>
+                    <input class="input" type="text" name="username" placeholder="아이디를 입력해 주세요"/><br/>
+                    <span class="PW">비밀번호<br></span>
+                    <input class="input" type="password" name="password" placeholder="비밀번호를 입력해 주세요"/><br/>
+
+                    <button class="submit" type="submit">로그인</button>
+                </form>
+                <ul id="sub_menu">
+                    <li><a href="/customer_join">회원가입</a></li>
+                    <li><a href="#">아이디찾기</a></li>
+                    <li><a href="#">비밀번호찾기</a></li>
+                </ul>
+            </div>     
+        </div>
+        <script src="./로그인화면.js"></script>
+    </body>
+</html>
+
+

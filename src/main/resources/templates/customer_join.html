@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>나는 아픈건 딱 질색이니까</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/customer_join.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id = "join_page">
+    <div id="main_top">
+        <span  id ="Name"><a href=/mainpage>나는 아픈건 딱 질색이니까</a></span>
+    </div>
+    <div id="join_box">
+        <form id="form" th:action="@{/customer_join}" th:object="${customer}" method="post">
+            <span id="join_logo">일반 이용자 회원가입<br><br></span>
+
+            <span class="NAME">이름</span>
+            <input class="input" type="text" th:field="*{name}" name="name" placeholder="이름을 입력해 주세요"/>
+            <span class="ID">아이디</span>
+            <input class="input" type="text" th:field="*{id}" name="id" placeholder="아이디를 입력해 주세요"/>
+            <span class="PW">비밀번호</span>
+            <input class="input" type="password" th:field="*{password}" name="password" placeholder="비밀번호를 입력해 주세요"/>
+            <span class="BIRTH">생년원일</span>
+            <input class="input_date" th:field="*{birth}" name="birth" type="date">
+            <span class="gender">성별</span><br>
+            <select th:field="*{gender}" name="gender" id="se_gender">
+                <option value="male">남성</option>
+                <option value="femail">여성</option>
+            </select><br><br><br>
+            <span class="PHONE_NB">전화번호</span>
+            <input class="input" type="number" th:field="*{phone}" name="phone" placeholder="전화번호를 입력해 주세요"/>
+            <span class="E_MAIL">이메일</span>
+            <input class="input" type="email" th:field="*{email}" name="email" placeholder="이메일을 입력해 주세요"/>
+
+            <button id="join_submit" type="submit">가입하기</button>
+        </form>
+    </div>
+</div>
+<script src="/js/customer_join.js"></script>
+</body>
+</html>
+
+

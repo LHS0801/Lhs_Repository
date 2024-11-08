@@ -1,0 +1,158 @@
+*{
+    font-family:"Gowun Dodum", sans-serif;
+    margin:0;
+    padding:0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    background-color: #f1f1f1;
+}
+
+#login_top{
+    width: 1240px;
+    height: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#login_logo{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#name {
+	color: #626262;
+	font-size:35px;
+    text-shadow: 3px 4px 10px;
+}
+
+#name > a{
+    color: #626262;
+}
+
+#login > a{
+    color: #626262;
+}
+
+#login_page{
+    width: 1440px;
+    height: 920px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px 100px 0 100px;
+    background-color: #e6e6e6fd;
+}
+
+#login_box{
+    width: 800px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#login_box > form >.ID{
+    margin-right: 425px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#login_box > form >.PW{
+    margin-right: 410px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+#login_box > form {
+    text-align: center;
+    padding-top: 50px;
+}
+
+#login_box > form >.input{
+    width: 60%;
+    height: 60px;
+    padding: 15px 10px 14px;
+    box-sizing: border-box;
+    border: 1px solid #3d3d3ddd;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+.submit{
+    width: 60%;
+    height: 60px;
+    color: #ffffff;
+    background-color: #f95d5d;
+    text-align: center;
+    border: none;
+    display: block;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.checkbox{
+    display: inline-block;
+    font-size: 20px;
+    color: #aaa;
+    margin-right: 360px;
+}
+
+#login_box > #sub_menu {
+    margin: 36px 0;
+    display: block;
+    height: 30px;
+}
+
+#sub_menu > li {
+    float: left;
+    margin-left: 20px;
+}
+
+#sub_menu > li:first-child {
+    margin-left: 270px;
+}
+
+#sub_menu > li::after{
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background-color: #aaa;
+    margin-left: 20px;
+    position: relative;
+    top: 2px;
+    margin-left: 20px;
+}
+
+#sub_menu > li:nth-child(3)::after{
+    display: none;
+}
+
+#sub_menu > li > a {
+    color:#aaa;
+    font-size: 14px;
+}

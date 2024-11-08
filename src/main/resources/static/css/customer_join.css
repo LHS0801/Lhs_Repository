@@ -1,0 +1,174 @@
+*{
+    font-family:"Gowun Dodum", sans-serif;
+    margin:0;
+    padding:0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    background-color: #f1f1f1;
+}
+
+#main_top{
+    width: 1240px;
+    height: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#join_logo{
+    font-size: 35px;
+}
+
+#Name {
+	color: #626262;
+	font-size:35px;
+    text-shadow: 3px 4px 10px;
+}
+
+#Name > a{
+    color: #626262;
+}
+
+#login { 
+	color: #626262;
+    float: right;
+    top: 50px;
+    font-size: 30px;
+}
+
+#login > a{
+    color: #626262;
+}
+
+#join_page{
+    width: 1440px;
+    height: 1150px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px 100px 0px 100px;
+    background-color: #e6e6e6fd;
+}
+
+#join_box{
+    width: 800px;
+    height: 950px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#join_box > form {
+    text-align: center;
+    padding: 50px 100px 0px 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#join_box > form >.join_logo{
+}
+
+
+#join_box > form >.NAME{
+    float: left;
+}
+#join_box > form >.ID{
+    float: left;
+}
+#join_box > form >.PW{
+    float: left;
+}
+#join_box > form >.REPW{
+    float: left;
+}
+#join_box > form >.BIRTH{   
+    float: left;
+    transform: translate(0%, 80%);
+}
+#join_box > form >.E_MAIL{
+    float: left;
+}
+#join_box > form >.gender{
+   float: left;
+   transform: translate(0%, 80%);
+}
+#join_box > form >.PHONE_NB{
+    float: left;
+}
+
+#se_gender{
+    font-size: 20px;
+    width: 100px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    float: right;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.input_date{
+    width: 300px;
+    height: 60px;
+    padding: 15px 10px 14px;
+    box-sizing: border-box;
+    border: 1px solid #3d3d3ddd;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 70px;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    float: left;
+}
+
+#join_box > form >.input{
+    width: 100%;
+    height: 60px;
+    padding: 15px 10px 14px;
+    box-sizing: border-box;
+    border: 1px solid #3d3d3ddd;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+#join_submit{
+    width: 70%;
+    height: 60px;
+    color: #ffffff;
+    background-color: #f95d5d;
+    text-align: center;
+    border: none;
+    display: block;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+

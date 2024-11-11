@@ -20,6 +20,10 @@ import java.util.List;
 public class CustomerEntity {
 
     @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "customer_id", unique = true, nullable = false)
     private String customer_id;
 

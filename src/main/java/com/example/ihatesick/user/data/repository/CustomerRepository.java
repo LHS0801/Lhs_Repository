@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<CustomerEntity, String> {
 
-    Optional<CustomerEntity> findById(String customer_id);
+
 }

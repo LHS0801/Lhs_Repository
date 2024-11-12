@@ -8,7 +8,6 @@ import lombok.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -29,10 +28,6 @@ public class QuestionnaireEntity {
     @Column(name = "questionnaire_form", nullable = false)
     private String Questionnaire_form;
 
-
-
-
-
     public String getQuestionnaireDoctor() {
         return Questionnaire_doctor;
     }
@@ -48,9 +43,5 @@ public class QuestionnaireEntity {
     public void setQuestionnaireForm(String form) {
         this.Questionnaire_form = form;
     }
-
-
-
-
 
 }

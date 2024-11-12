@@ -23,6 +23,12 @@
 
                     <button class="submit" type="submit">로그인</button>
                 </form>
+                <th:block th:if="${error}">
+                    <script type="text/javascript">
+                        // error 메시지가 있을 경우 팝업 표시
+                        alert("아이디 또는 비밀번호가 틀렸습니다");
+                    </script>
+                </th:block>
                 <ul id="sub_menu">
                     <li><a href="/customer_join">회원가입</a></li>
                     <li><a href="#">아이디찾기</a></li>

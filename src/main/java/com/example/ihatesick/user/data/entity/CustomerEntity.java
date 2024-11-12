@@ -2,11 +2,7 @@ package com.example.ihatesick.user.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +21,7 @@ public class CustomerEntity {
     private Long id;
 
     @Column(name = "customer_id", unique = true, nullable = false)
-    private String customer_id;
+    private String customerId;
 
     @Column(name = "customer_name", nullable = false)
     private String customer_name;
@@ -45,17 +41,12 @@ public class CustomerEntity {
     @Column(name = "customer_phone", nullable = false)
     private String customer_phone;
 
-
-
-
-
-
     public String getId() {
-        return customer_id;
+        return customerId;
     }
 
     public void setId(String id) {
-        this.customer_id = id;
+        this.customerId = id;
     }
 
     public String getName() {
@@ -102,7 +93,5 @@ public class CustomerEntity {
     public void setPhone(String phone) {
         this.customer_phone = phone;
     }
-
-
 
 }

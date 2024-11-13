@@ -36,12 +36,14 @@ public class CustomerController {
                                  Model model) {
         System.out.println("ID: " + username);
         System.out.println("PW: " + password);
-        String result = loginService.authenticate(username, password); // 인증 메서드 호출
-        if ("성공".equals(result)) {
-            return "redirect:/mainpage"; // 로그인 성공 시 메인 페이지로 리다이렉트
+        // 아이디와 비밀번호를 확인하고 오류 메시지 받기
+        String errorMessage = loginService.authenticate(username, password);
+
+        if (errorMessage == null) {
+            return "redirect:/mainpage"; // 인증 성공 시 메인 페이지로 리다이렉트
         } else {
-            model.addAttribute("error", result); // 에러 메시지를 모델에 추가
-            return "customer_login"; // 로그인 페이지로 돌아감
+            model.addAttribute("error", errorMessage); // 오류 메시지를 모델에 추가
+            return "customer_login"; // 로그인 페이지로 돌아가서 오류 메시지 표시
         }
     }
 

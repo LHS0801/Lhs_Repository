@@ -3,6 +3,7 @@ package com.example.ihatesick.user.controller;
 import com.example.ihatesick.user.data.repository.CustomerRepository;
 import com.example.ihatesick.user.data.entity.CustomerEntity;
 import com.example.ihatesick.user.service.LoginService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -25,26 +26,31 @@ public class CustomerController {
 
     @Autowired
     private LoginService loginService;
-    @GetMapping("/customer_login")
-    public String showLoginPage() {
-        return "customer_login"; // 로그인 페이지로 이동
-    }
 
     @PostMapping("/customer_login")
     public String customer_login(@RequestParam("username") String username,
                                  @RequestParam("password") String password,
-                                 Model model) {
+                                 Model model, HttpSession session) {
         System.out.println("ID: " + username);
         System.out.println("PW: " + password);
         // 아이디와 비밀번호를 확인하고 오류 메시지 받기
         String errorMessage = loginService.authenticate(username, password);
 
         if (errorMessage == null) {
+            session.setAttribute("loggedInUser", username);
             return "redirect:/mainpage"; // 인증 성공 시 메인 페이지로 리다이렉트
         } else {
             model.addAttribute("error", errorMessage); // 오류 메시지를 모델에 추가
             return "customer_login"; // 로그인 페이지로 돌아가서 오류 메시지 표시
         }
+    }
+
+    @GetMapping("/customer_login")
+    public String showLoginPage(HttpSession session) {
+        if (session.getAttribute("loggedInUser") != null) {
+            return "redirect:/mainpage"; // 이미 로그인한 사용자는 메인 페이지로 리다이렉트
+        }
+        return "customer_login"; // 로그인하지 않은 사용자만 로그인 페이지로 이동
     }
 
     @GetMapping("/hospital_info")

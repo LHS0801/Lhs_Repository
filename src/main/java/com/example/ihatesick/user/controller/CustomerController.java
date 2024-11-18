@@ -27,30 +27,50 @@ public class CustomerController {
     @Autowired
     private LoginService loginService;
 
+    // 로그인 처리
     @PostMapping("/customer_login")
     public String customer_login(@RequestParam("username") String username,
                                  @RequestParam("password") String password,
-                                 Model model, HttpSession session) {
+                                 HttpSession session, Model model) {
         System.out.println("ID: " + username);
         System.out.println("PW: " + password);
+
         // 아이디와 비밀번호를 확인하고 오류 메시지 받기
         String errorMessage = loginService.authenticate(username, password);
-
         if (errorMessage == null) {
+            // 로그인 성공 시 세션에 사용자 정보 저장
             session.setAttribute("loggedInUser", username);
-            return "redirect:/mainpage"; // 인증 성공 시 메인 페이지로 리다이렉트
+            return "customer_logout"; // 로그인 후 로그아웃 페이지로 리다이렉트
         } else {
-            model.addAttribute("error", errorMessage); // 오류 메시지를 모델에 추가
-            return "customer_login"; // 로그인 페이지로 돌아가서 오류 메시지 표시
+            // 로그인 실패 시 오류 메시지를 모델에 추가하여 로그인 페이지로 돌아감
+            model.addAttribute("error", errorMessage);
+            return "customer_login"; // 로그인 페이지로 돌아감
         }
     }
 
+    // 로그인 페이지
     @GetMapping("/customer_login")
     public String showLoginPage(HttpSession session) {
         if (session.getAttribute("loggedInUser") != null) {
-            return "redirect:/mainpage"; // 이미 로그인한 사용자는 메인 페이지로 리다이렉트
+            return "redirect:/customer_logout"; // 이미 로그인한 사용자는 로그아웃 페이지로 리다이렉트
         }
-        return "customer_login"; // 로그인하지 않은 사용자만 로그인 페이지로 이동
+        return "customer_login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
+    }
+
+    // 로그아웃 처리
+    @GetMapping("/customer_logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+        return "redirect:/mainpage"; // 로그아웃 후 메인 페이지로 리다이렉트
+    }
+
+    // 메인 페이지
+    @GetMapping("/")
+    public String mainPage(HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "customer_login"; // 로그인되지 않은 사용자는 로그인 페이지로 리다이렉트
+        }
+        return "main"; // 로그인된 사용자는 메인 페이지로 이동
     }
 
     @GetMapping("/hospital_info")

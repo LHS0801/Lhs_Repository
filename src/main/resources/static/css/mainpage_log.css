@@ -264,7 +264,7 @@ body{
 
 }
 
-#customer_logout{
+#customer_login{
     display: inline-block;
     width: 200px;
     padding: 10px 20px 10px 20px;
@@ -280,5 +280,21 @@ body{
     cursor:pointer ;
 }
 
+#business_login{
+    margin-top: 10px;
+    display: inline-block;
+    width: 200px;
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    letter-spacing: 1px;
+    background-color: #f95d5d;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    cursor:pointer ;
+}
 
 

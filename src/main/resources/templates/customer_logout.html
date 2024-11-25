@@ -1,8 +1,9 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>나는 아픈 건 딱 질색이니까</title>
   <link rel="stylesheet" th:href="@{/css/customer_logout.css}"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,18 +14,18 @@
 <body>
 <div id = "logout_page">
   <div id ="logout_top">
-    <span  id ="name"><a href="/mainpage">나는 아픈건 딱 질색이니까</a></span>
+    <span  id ="name"><a href="mainpage">나는 아픈건 딱 질색이니까</a></span>
   </div>
   <div id ="logout_bottom">
     <div class="subject_list">
       <ul>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">내과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">신경과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">정형외과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">안과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">이비인후과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">피부과</a></li>
-        <li><img class="hos_img" src="/img/hospital.png"><a href="#">치과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">내과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">신경과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">정형외과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">안과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">이비인후과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">피부과</a></li>
+        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">치과</a></li>
       </ul>
     </div>
     <div id ="find_page">
@@ -35,80 +36,24 @@
         </button>
       </form>
       <div id="menubar">
-        <span id="location"><img class="pin_1" src="./img/pin.png">어방동</span>
-        <span id="close">가까운 순<img class="dropdown" src="./img/dropdown.png"></span>
+        <span id="location"><img class="pin_1" src="./img/pin.png" alt="">어방동</span>
+        <span id="close">가까운 순<img class="dropdown" src="./img/dropdown.png" alt=""></span>
         <span id="wait">대기순번 적은순</span>
         <span id="on">영업중</span>
         <span id="night">야간진료</span>
       </div>
       <div id="hospital_view">
-        <div class="hospital" onclick="location.href='/hospital_info'">
-          <span class="hospital_name">###병원</span><br><br>
+        <div class="hospital" th:each="hospital : ${hospitals}" th:onclick="|location.href='/hospital_info/${hospital.id}'|">
+          <span class="hospital_name" th:text="${hospital.name}">병원 이름</span><br><br>
           <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital" onclick="location.href='/hospital_info'">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="./img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
-        </div>
-        <div class="hospital">
-          <span class="hospital_name">###병원</span><br><br>
-          <span class="hospital_on_off">영업중</span><br>
-          <span class="waiting">현재 대기인원 : ##명</span><br>
-          <img class="pin" src="/img/pin.png">
-          <span class="hospital_address">##m 경상남도 김해시 어방동</span>
+          <span class="waiting">현재 대기인원 : 0명</span><br>
+          <img class="pin" src="/img/pin.png" alt="">
+          <span class="hospital_address" th:text="${hospital.address}">병원 주소</span>
         </div>
       </div>
     </div>
     <div id="logout_right">
-      <span id='customer_login' onclick="location.href='/customer_logout'">로그아웃</span>
+      <span onclick="location.href='/customer_logout'">로그아웃</span>
     </div>
   </div>
 </div>

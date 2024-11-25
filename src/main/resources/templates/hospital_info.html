@@ -1,8 +1,9 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>나는 아픈건 딱 질색이니까</title>
         <link rel="stylesheet" th:href="@{/css/hospital_info.css}"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,32 +12,39 @@
         <meta name="viewport" content="width=device-width, initial-scale+1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930dfec89d16a7fe8648315706914584"></script>
+        <style>
+            #map {
+                width: 500px;
+                height: 400px;
+            }
+        </style>
+    </head>
     <body>
         <div id = "main_page"> 
             <div id ="main_top">
-                <span  id ="name"><a href="/mainpage">나는 아픈건 딱 질색이니까</a></span>
+                <span  id ="name"><a href="mainpage" id="titleLink">나는 아픈건 딱 질색이니까</a></span>
             </div>
             <div id ="main_bottom">
                 <div class="subject_list">
                     <ul>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">내과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">신경과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">정형외과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">안과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">이비인후과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">피부과</a></li>
-                        <li><img class="hos_img" src="/img/hospital.png"><a href="#">치과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">내과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">신경과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">정형외과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">안과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">이비인후과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">피부과</a></li>
+                        <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="#">치과</a></li>
                     </ul>
                 </div>
                 <div id ="find_page">
                     <form id="search_box" action="" method="get">
                         <input class="search_text" type="text" name="" placeholder="병원 검색">
                         <button class="search_btn" type="submit">
-                            <img id="search_img" src="./img/search.png" alt="">
+                            <img id="search_img" src="/img/search.png" alt="">
                         </button>
                     </form>
                     <div class="hospital_n">
-                        <span class="hospital_name">우리의꿈 병원</span>
+                        <span class="hospital_name" th:text="${hospital.name}">병원 이름</span>
                     </div>
                     <div id="hospital_info">
                         <div class="run_time">
@@ -55,19 +63,24 @@
                         <div class="hospital_location">
                             <span class="location">병원위치</span><br>
                             <div id="location_bg">
-                                <span class="address">경상남도 김해시 어방동 123-45</span>
+                                <span class="address" th:text="${hospital.address}">병원 위치</span>
+                                <div id="map" style="width: 100%; height: 400px;"></div>
                             </div>
-                            <div id="map"></div>
                         </div>
+                        <button id="reserve"  onclick="location.href='/hospital_reserve'" >예약하기</button>
                     </div>
-                    <button id="reserve"  onclick="location.href='/hospital_reserve'" >예약하기</button>
                 </div>
                 <div id="main_right">
-                    <span id='customer_login' onclick="location.href='/customer_login'">일반회원 로그인</span>
-                    <span id='business_login' onclick="location.href='/business_login'">사업자회원 로그인</span>
+                    <span onclick="location.href='/customer_logout'">로그아웃</span>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            // Thymeleaf로부터 JavaScript 변수에 값 할당
+            var latitude = parseFloat([[${hospital.y}]]);
+            var longitude = parseFloat([[${hospital.x}]]);
+            var hospitalName = '[[${hospital.name}]]';
+        </script>
         <script type="text/javascript" th:src="@{/js/hospital_info.js}"></script>
     </body>
 </html>

@@ -1,50 +1,70 @@
 package com.example.ihatesick.user.controller;
 
+import com.example.ihatesick.user.data.entity.HospitalEntity;
 import com.example.ihatesick.user.data.repository.CustomerRepository;
 import com.example.ihatesick.user.data.entity.CustomerEntity;
+import com.example.ihatesick.user.service.HospitalService;
 import com.example.ihatesick.user.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 
 public class CustomerController {
 
-
-    @GetMapping("/mainpage")
-    public String mainpage(){
-        return "mainpage";
-    }
-
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private HospitalService hospitalService;
+
+    // 메인 페이지 접근 시 병원 목록 불러오기
+    @GetMapping("/mainpage")
+    public String showMainPage(Model model, HttpSession session) {
+        List<HospitalEntity> hospitals = hospitalService.getAllHospitals();
+        model.addAttribute("hospitals", hospitals);
+
+        // 로그인 상태 확인
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        model.addAttribute("loggedInUser", loggedInUser);
+
+        // 로그인 상태일 때만 로그아웃 버튼을 보여주기 위해
+        if (loggedInUser != null) {
+            model.addAttribute("isLoggedIn", true);
+        } else {
+            model.addAttribute("isLoggedIn", false);
+        }
+
+        return "mainpage";  // mainpage.html로 병원 목록 전달
+    }
 
     // 로그인 처리
     @PostMapping("/customer_login")
     public String customer_login(@RequestParam("username") String username,
                                  @RequestParam("password") String password,
                                  HttpSession session, Model model) {
-        System.out.println("ID: " + username);
-        System.out.println("PW: " + password);
 
-        // 아이디와 비밀번호를 확인하고 오류 메시지 받기
         String errorMessage = loginService.authenticate(username, password);
         if (errorMessage == null) {
-            // 로그인 성공 시 세션에 사용자 정보 저장
             session.setAttribute("loggedInUser", username);
-            return "customer_logout"; // 로그인 후 로그아웃 페이지로 리다이렉트
+
+            // 병원 목록을 모델에 추가
+            List<HospitalEntity> hospitals = hospitalService.getAllHospitals();
+            model.addAttribute("hospitals", hospitals);
+
+            return "customer_logout";  // 수정: 모델을 사용하도록 변경
         } else {
-            // 로그인 실패 시 오류 메시지를 모델에 추가하여 로그인 페이지로 돌아감
             model.addAttribute("error", errorMessage);
-            return "customer_login"; // 로그인 페이지로 돌아감
+            return "customer_login";
         }
     }
 
@@ -59,9 +79,16 @@ public class CustomerController {
 
     // 로그아웃 처리
     @GetMapping("/customer_logout")
-    public String logout(HttpSession session) {
-        session.invalidate(); // 세션 무효화
-        return "redirect:/mainpage"; // 로그아웃 후 메인 페이지로 리다이렉트
+    public String logout(HttpSession session, Model model) {
+        // 세션 무효화
+        session.invalidate();
+
+        // 병원 목록을 모델에 추가 (로그인 상태가 아니므로 병원 목록을 메인 페이지에 추가)
+        List<HospitalEntity> hospitals = hospitalService.getAllHospitals();
+        model.addAttribute("hospitals", hospitals);
+
+        // 메인 페이지로 리다이렉트
+        return "redirect:/mainpage";
     }
 
     // 메인 페이지
@@ -70,11 +97,19 @@ public class CustomerController {
         if (session.getAttribute("loggedInUser") == null) {
             return "customer_login"; // 로그인되지 않은 사용자는 로그인 페이지로 리다이렉트
         }
-        return "main"; // 로그인된 사용자는 메인 페이지로 이동
+        return "mainpage"; // 로그인된 사용자는 메인 페이지로 이동
     }
 
-    @GetMapping("/hospital_info")
-    public String hospital_info(){
+    @GetMapping("/hospital_info/{id}")
+    public String hospital_info(@PathVariable("id") Long id, Model model) {
+        // 병원 정보를 DB에서 조회 (서비스 메서드 호출)
+        HospitalEntity hospital = hospitalService.getHospitalById(id);
+
+        if (hospital != null) {
+            model.addAttribute("hospital", hospital);
+        } else {
+            model.addAttribute("error", "병원 정보를 찾을 수 없습니다.");
+        }
         return "hospital_info";
     }
 

@@ -1,8 +1,9 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>나는 아픈건 딱 질색이니까</title>
         <link rel="stylesheet" th:href="@{/css/hospital_reserve.css}"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,18 +15,18 @@
     <body>
     <div id = "main_page">
         <div id ="main_top">
-            <span  id ="name"><a href="mainpage">나는 아픈건 딱 질색이니까</a></span>
+            <span  id ="name"><a href="mainpage">나는 아픈 건 딱 질색이니까</a></span>
         </div>
         <div id ="main_bottom">
             <div class="subject_list">
                 <ul>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">내과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">신경과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">정형외과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">안과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">이비인후과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">피부과</a></li>
-                    <li><img class="hos_img" src="/img/hospital.png"><a href="#">치과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/1">내과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/2">신경과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/3">정형외과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/4">안과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/5">이비인후과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/6">피부과</a></li>
+                    <li><img class="hos_img" src="/img/hospital.png" alt=""><a href="/hospitals/category/7">치과</a></li>
                 </ul>
             </div>
             <div id ="find_page">
@@ -36,9 +37,9 @@
                     </button>
                 </form>
                 <div class="hospital_n">
-                    <span class="hospital_name">우리의꿈 병원</span>
+                    <span class="hospital_name">병원이름</span>
                 </div>
-                <div id="hospital_reserve">
+                <div id= "hospital_reserve">
                     <form id="reserve" th:action="@{/hospital_reserve}" th:object="${questionnaire}" method="post">
                         <span class="doc_select">의료진 선택</span><br>
                         <div id="doctor_talbe">
@@ -47,8 +48,7 @@
                         </div>
                         <span id="question">문진표 작성</span><br>
                         <input id="questionnaire" type="text" th:field="*{questionnaireForm}" name="questionnaireForm" placeholder="증상을 간단히 적어주세요"/>
-
-                        <button id="btn_reserve"  type="submit" >예약완료</button>
+                        <span> <button id="btn_reserve"  type="submit" >예약완료</button> </span>
                     </form>
                 </div>
 

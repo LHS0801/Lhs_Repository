@@ -25,9 +25,6 @@ public class CustomerController {
     @Autowired
     private HospitalService hospitalService;
 
-
-
-
     // 로그인 처리
     @PostMapping("/customer_login")
     public String customer_login(@RequestParam("username") String username,
@@ -42,7 +39,7 @@ public class CustomerController {
             List<HospitalEntity> hospitals = hospitalService.getAllHospitals();
             model.addAttribute("hospitals", hospitals);
 
-            return "mainpage_log_1";  // 수정: 모델을 사용하도록 변경
+            return "mainpage_log_1";
         } else {
             model.addAttribute("error", errorMessage);
             return "customer_login";
@@ -53,13 +50,13 @@ public class CustomerController {
     @GetMapping("/customer_login")
     public String showLoginPage(HttpSession session) {
         if (session.getAttribute("loggedInUser") != null) {
-            return "redirect:/customer_logout"; // 이미 로그인한 사용자는 로그아웃 페이지로 리다이렉트
+            return "redirect:/mainpage_log_1"; // 이미 로그인한 사용자는 로그아웃 페이지로 리다이렉트
         }
         return "customer_login"; // 로그인하지 않은 사용자는 로그인 페이지로 이동
     }
 
     // 로그아웃 처리
-    @GetMapping("/customer_logout")
+    @GetMapping("/mainpage_log_1")
     public String logout(HttpSession session, Model model) {
         // 세션 무효화
         session.invalidate();
@@ -68,23 +65,7 @@ public class CustomerController {
         List<HospitalEntity> hospitals = hospitalService.getAllHospitals();
         model.addAttribute("hospitals", hospitals);
 
-        // 메인 페이지로 리다이렉트
-        return "redirect:/mainpage";
-    }
-
-    // 메인 페이지
-    @GetMapping("/")
-    public String mainPage(HttpSession session) {
-        if (session.getAttribute("loggedInUser") == null) {
-            return "customer_login"; // 로그인되지 않은 사용자는 로그인 페이지로 리다이렉트
-        }
-        return "mainpage"; // 로그인된 사용자는 메인 페이지로 이동
-    }
-
-
-    @GetMapping("/business_login")
-    public String business_login(){
-        return "business_login";
+        return "redirect:/customer_login";
     }
 
     @Autowired

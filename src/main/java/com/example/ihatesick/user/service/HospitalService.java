@@ -17,8 +17,13 @@ public class HospitalService {
     }
 
     // 병원 ID로 병원 정보 조회
-    public HospitalEntity getHospital(Long code) {
+    public HospitalEntity getHospital(Long id) {
         // 병원 ID에 해당하는 병원을 데이터베이스에서 조회
-        return hospitalRepository.findById(code).orElse(null);  // 병원이 없으면 null 반환
+        return hospitalRepository.findById(id).orElse(null);  // 병원이 없으면 null 반환
+    }
+
+    // 카테고리 코드에 따라 병원 목록 조회
+    public List<HospitalEntity> getHospitalsByCategory(String code) {
+        return hospitalRepository.findByCode(code);
     }
 }
